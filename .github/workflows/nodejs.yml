@@ -11,7 +11,6 @@ on:
 
 env:
   CI: true
-  NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   buildAndTest:
     name: Build and Test
@@ -36,6 +35,8 @@ jobs:
     runs-on: [ubuntu-latest]
     if: github.event_name == 'push'
     needs: [buildAndTest]
+    env:
+      NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
