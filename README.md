@@ -6,10 +6,10 @@ Use Inversify in your koa based applications, this modules is based on [inversif
 
 ## Installation
 
-You can install `inversify-koa-utils` using npm:
+You can install `@yveskaufmann/inversify-koa-utils` using npm:
 
 ```bash
-npm install inversify inversify-koa-utils --save
+npm install inversify @yveskaufmann/inversify-koa-utils --save
 ```
 
 ## The Basics
@@ -21,7 +21,7 @@ The following example will declare a controller that responds to `GET /foo'.
 
 ```ts
 import { inject } from 'inversify';
-import { HttpController } from 'inversify-koa-utils';
+import { HttpController } from '@yveskaufmann/inversify-koa-utils';
 
 @HttpController('/users')
 class UserController {
@@ -50,7 +50,7 @@ In order for the InversifyKoaServer to find your controllers, you must import th
 
 ```ts
 import { Container } from 'inversify';
-import { interfaces, InversifyKoaServer, TYPE } from 'inversify-koa-utils';
+import { interfaces, InversifyKoaServer, TYPE } from '@yveskaufmann/inversify-koa-utils';
 
 // set up container
 let container = new Container();
