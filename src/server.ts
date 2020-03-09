@@ -13,7 +13,7 @@ import { TYPE, PARAMETER_TYPE } from './constants';
 import { DuplicatedControllerNameError } from './error';
 import { interfaces } from './interfaces';
 
-export class KoaInversifyServer {
+export class InversifyKoaServer {
   //
   //
   private container: inversify.Container;

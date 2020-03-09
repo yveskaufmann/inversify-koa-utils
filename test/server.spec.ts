@@ -2,17 +2,17 @@ import inversify, { Container } from 'inversify';
 import supertest from 'supertest';
 
 import { Delete, Get, Head, HttpMethod, HttpParam, Patch, Post, Put, HttpController } from '../src/decorators';
-import { KoaInversifyServer } from '../src/server';
+import { InversifyKoaServer } from '../src/server';
 import { cleanUpControllerListMetadata } from '../src/utils';
 import { PARAMETER_TYPE } from '../src/constants';
 
 describe('Request Handling', () => {
-  let server: KoaInversifyServer;
+  let server: InversifyKoaServer;
   let container: inversify.Container;
 
-  function supertestFactory(server?: KoaInversifyServer) {
+  function supertestFactory(server?: InversifyKoaServer) {
     if (!server) {
-      server = new KoaInversifyServer(container);
+      server = new InversifyKoaServer(container);
     }
     return supertest(server.build().callback());
   }
@@ -33,7 +33,7 @@ describe('Request Handling', () => {
       }
     }
 
-    server = new KoaInversifyServer(container);
+    server = new InversifyKoaServer(container);
 
     await supertestFactory(server)
       .get('/users')
@@ -51,7 +51,7 @@ describe('Request Handling', () => {
       }
     }
 
-    server = new KoaInversifyServer(container);
+    server = new InversifyKoaServer(container);
 
     await supertestFactory(server)
       .get('/users/fov')
