@@ -9,17 +9,17 @@ on:
   pull_request:
     branches: [ master ]
 
+env:
+  CI: true
+  NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
-  buildAndPublish:
-
+  buildAndTest:
+    name: Build and Test
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [10.x, 12.x]
-    env:
-      CI: true
-      NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      fail-fast: true  
     steps:
     - uses: actions/checkout@v2
     - name: With Node.js ${{ matrix.node-version }}
@@ -30,14 +30,21 @@ jobs:
       run: | 
         npm ci
         npm run build --if-present
-    - name: Test
-      run: npm test
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 12.x
-        registry-url: 'https://npm.pkg.github.com'
-    - name: Publish Package
+        npm run test
+  publish: 
+      name: Publish new version
+      runs-on: [ubuntu-latest]
       if: github.event == 'push'
-      run: npm publish
+      needs: [buildAndTest]
+      steps:
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+          registry-url: 'https://npm.pkg.github.com'
+      - run: | 
+          npm run build --if-present
+          npm publish
+      
+
       
  
