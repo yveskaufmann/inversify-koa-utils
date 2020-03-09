@@ -1,5 +1,5 @@
 {
-  "name": "inversify-koa-utils",
+  "name": "@yveskaufmann/inversify-koa-utils",
   "version": "0.0.2",
   "description": "Use inversify in your koa based applications",
   "main": "dist/index.js",
