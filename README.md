@@ -2,7 +2,7 @@
 
 ![Node.js CI](https://github.com/yveskaufmann/inversify-koa-utils/workflows/Node.js%20CI/badge.svg)
 
-Use Inversify in your koa based applications.
+Use Inversify in your koa based applications, this modules is based on [inversify-express-utils](https://github.com/inversify/inversify-express-utils).
 
 ## Installation
 
