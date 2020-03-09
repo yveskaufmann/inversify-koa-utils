@@ -10,6 +10,20 @@ on:
     branches: [ master ]
 
 jobs:
+  publish:
+    runs-on: [ubuntu-latest]
+    if: github.event == 'push'
+    needs: [build]
+    env:
+      CI: true
+      NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Publish version ${{}}  
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+          registry-url: 'https://npm.pkg.github.com'
+      - run: npm publish
   build:
 
     runs-on: ubuntu-latest
@@ -28,7 +42,5 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
-    - run: npm publish
       env:
         CI: true
-        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
