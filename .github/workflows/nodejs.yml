@@ -18,7 +18,7 @@ jobs:
       CI: true
       NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - name: Publish version ${{}}  
+      - name: Publish New version  
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
