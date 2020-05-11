@@ -3,6 +3,7 @@
   "version": "0.0.3",
   "description": "Use inversify in your koa based applications",
   "main": "dist/index.js",
+  "private": false,
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
